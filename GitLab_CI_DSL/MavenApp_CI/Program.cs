@@ -6,7 +6,7 @@ namespace MavenApp_CI
     {
         static void Main(string[] args)
         {
-
+            new SimpleMavenPipeline();
         }
     }
 }
