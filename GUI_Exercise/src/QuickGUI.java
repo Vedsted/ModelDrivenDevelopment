@@ -99,7 +99,6 @@ public class QuickGUI {
          * TODO: implement this method
          */
         public GUIBuilder newline() {
-        	// ...
             QPanel p0 = new QPanel(Layout.HORIZONTAL);
             for(QComponent c: currentRow) p0.add(c);
             getTopPanel().add(p0);
@@ -113,8 +112,7 @@ public class QuickGUI {
          * @return the builder
          * TODO: implement this method
          */
-        public GUIBuilder label(String name, String text) { 
-            // ...
+        public GUIBuilder label(String name, String text) {
             currentRow.add(new QLabel(name, text));
             return this;
         }

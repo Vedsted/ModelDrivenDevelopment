@@ -61,7 +61,8 @@ public class Counter implements ActionListener {
             		  button("Less").button("More").
 					newline().
                 	  button("Reset").button("Quit").
-            		newline();
+            		newline().
+                      button("Test").newline();
         	
         }
     }
