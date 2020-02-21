@@ -1,8 +1,0 @@
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/obj/Debug/netcoreapp3.1/GitLab_CI_DSL.csprojAssemblyReference.cache
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/obj/Debug/netcoreapp3.1/GitLab_CI_DSL.AssemblyInfoInputs.cache
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/obj/Debug/netcoreapp3.1/GitLab_CI_DSL.AssemblyInfo.cs
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/bin/Debug/netcoreapp3.1/GitLab_CI_DSL.deps.json
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/bin/Debug/netcoreapp3.1/GitLab_CI_DSL.dll
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/bin/Debug/netcoreapp3.1/GitLab_CI_DSL.pdb
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/obj/Debug/netcoreapp3.1/GitLab_CI_DSL.dll
-/home/jvs/git/ModelDrivenDevelopment/GitLab_CI_DSL/GitLab_CI_DSL/obj/Debug/netcoreapp3.1/GitLab_CI_DSL.pdb

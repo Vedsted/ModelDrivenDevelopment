@@ -9,7 +9,7 @@ namespace GitLab_CI_DSL
 
         public JobType Type { get; }
         
-        public string Stage { get; set; }
+        public string Image { get; private set; }
         
         public List<string> Scripts { get; private set; }
 
@@ -20,10 +20,6 @@ namespace GitLab_CI_DSL
 
         public Job(string name, JobType type)
         {
-            if (!name.StartsWith("."))
-            {
-                throw new ArgumentException("Extension name must start with '.'!");
-            }
             Name = name;
             Type = type;
         }
@@ -60,6 +56,14 @@ namespace GitLab_CI_DSL
             }
             
             Variables.Add(key, value);
+        }
+
+        public void SetImage(string imageName)
+        {
+            if (Image != null)
+            {
+                throw new Exception("Only one image can be set for ");
+            }
         }
     }
 }

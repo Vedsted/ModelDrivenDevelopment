@@ -1,3 +1,7 @@
 */.idea/
 */.out/
 GUI_Exercise/out/
+*/GitLab_CI_DSL/bin/
+*/GitLab_CI_DSL/obj/
+*/MavenApp_CI/bin/
+*/MavenApp_CI/obj/

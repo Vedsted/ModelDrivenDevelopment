@@ -6,7 +6,11 @@ namespace MavenApp_CI
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("######## Simple Maven ########");
             new SimpleMavenPipeline();
+
+            Console.WriteLine("\n######## Complex Maven ########");
+            new MavenProjPipeline();
         }
     }
 }
