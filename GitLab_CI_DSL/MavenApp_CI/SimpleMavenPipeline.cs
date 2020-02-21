@@ -9,14 +9,19 @@ namespace MavenApp_CI
             Pipeline("maven.yml")
                 .Default()
                     .Image("maven:latest")
-                .Extension(".build")
-                    .Script("mvn clean build")
+                .Extension(".clean")
+                    .Script("mvn clean")
                 .Stage("validation")
+                    .Extension(".compile")
+                        .Extend(".clean")
+                        .Script("mvn compile")
                     .Job("compile")
-                        .Extend(".build")
+                        .Extend(".compile")
+                        .Script("echo \"Compiled Successfully\"")
                     .Job("test")
-                        .Extend(".build")
-                        .Script("mvn verify");
+                        .Extend(".compile")
+                        .Script("mvn verify")
+                        .Script("echo \"Unit tests passed\"");
         }
     }
 }

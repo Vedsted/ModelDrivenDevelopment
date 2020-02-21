@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GitLab_CI_DSL
 {
-    public class YmlCreator
+    public class GitLabParser
     {
         public void CreateGitlabCiConfig(Pipeline pipeline)
         {
@@ -22,7 +22,7 @@ namespace GitLab_CI_DSL
         }
 
 
-        private string parseDefaultJob(DefaultJob job)
+        private string parseDefaultJob(Default job)
         {
             if (job == null)
             {

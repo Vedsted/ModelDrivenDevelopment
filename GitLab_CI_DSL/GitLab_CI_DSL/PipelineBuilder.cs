@@ -7,7 +7,7 @@ namespace GitLab_CI_DSL
     {
         private Pipeline _pipeline;
         
-        private DefaultJob _defaultJob;
+        private Default _default;
 
         //private List<Stage> _stages;
         private Stage _currentStage;
@@ -26,7 +26,7 @@ namespace GitLab_CI_DSL
             SaveExistingStage();
             SaveExistingExtension();
             SaveDefault();
-            new YmlCreator().CreateGitlabCiConfig(_pipeline);
+            new GitLabParser().CreateGitlabCiConfig(_pipeline);
         }
 
 
@@ -50,7 +50,7 @@ namespace GitLab_CI_DSL
          */
         public PipelineBuilder Default()
         {
-            if (_defaultJob != null || _pipeline.Default != null)
+            if (_default != null || _pipeline.Default != null)
             {
                 throw new Exception("Multiple instances of 'Default' is not supported");
             }
@@ -60,7 +60,7 @@ namespace GitLab_CI_DSL
                 throw new Exception("Default must be defined before: Stages, Jobs and Extensions");
             }
 
-            _defaultJob = new DefaultJob();
+            _default = new Default();
             return this;
         }
 
@@ -70,11 +70,6 @@ namespace GitLab_CI_DSL
          */
         public PipelineBuilder Extension(string name)
         {
-            if (!name.StartsWith("."))
-            {
-                throw new ArgumentException("Extension name must start with '.'!");
-            }
-            
             SaveDefault();
             SaveExistingJob();
             SaveExistingExtension();
@@ -107,11 +102,6 @@ namespace GitLab_CI_DSL
             if (_currentStage == null)
             {
                 throw new Exception("Job '" + name + "' can only be set for a stage.");
-            }
-            
-            if (name.StartsWith("."))
-            {
-                throw new ArgumentException("Job name must not start with '.'!");
             }
             
             SaveExistingJob();
@@ -182,7 +172,7 @@ namespace GitLab_CI_DSL
         /**
          * Helper method for getting the active job (Default, Extension or Job)
          */
-        private DefaultJob GetActiveJob(string action)
+        private Default GetActiveJob(string action)
         {
             if (_currentJob != null)
             {
@@ -194,9 +184,9 @@ namespace GitLab_CI_DSL
                 return _currentExtension;
             }
 
-            if (_defaultJob != null)
+            if (_default != null)
             {
-                return _defaultJob;
+                return _default;
             }
             
             throw new Exception("No active job found!\n" + action + " can only be attached to: Jobs, Extension and Default.");
@@ -208,10 +198,10 @@ namespace GitLab_CI_DSL
          */
         private void SaveDefault()
         {
-            if (_defaultJob != null && _pipeline.Default == null)
+            if (_default != null && _pipeline.Default == null)
             {
-                _pipeline.Default = _defaultJob;
-                _defaultJob = null;
+                _pipeline.Default = _default;
+                _default = null;
             }
         }
     }
