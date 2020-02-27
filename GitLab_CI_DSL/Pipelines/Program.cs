@@ -1,11 +1,14 @@
 ﻿using System;
 
-namespace MavenApp_CI
+namespace Pipelines
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("######## Dot Net Core ########");
+            new GitLabDslPipeline();
+            
             Console.WriteLine("######## Simple Maven ########");
             new SimpleMavenPipeline();
 
@@ -13,4 +16,4 @@ namespace MavenApp_CI
             new MavenProjPipeline();
         }
     }
-}
+} 

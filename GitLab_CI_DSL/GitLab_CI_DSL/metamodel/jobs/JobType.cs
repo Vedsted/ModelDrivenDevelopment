@@ -1,4 +1,4 @@
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.metamodel.jobs
 {
     public enum JobType
     {

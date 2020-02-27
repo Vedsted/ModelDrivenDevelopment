@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLab_CI_DSL", "GitLab_CI_DSL\GitLab_CI_DSL.csproj", "{A2A9AE67-1F19-4122-982E-08411735CFEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenApp_CI", "MavenApp_CI\MavenApp_CI.csproj", "{9609A977-F7F4-4826-B51E-A1525E595409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelines", "Pipelines\Pipelines.csproj", "{9609A977-F7F4-4826-B51E-A1525E595409}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

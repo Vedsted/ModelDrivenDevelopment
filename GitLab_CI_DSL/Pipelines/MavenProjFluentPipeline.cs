@@ -1,6 +1,8 @@
-using GitLab_CI_DSL;
+using GitLab_CI_DSL.Builder;
+using GitLab_CI_DSL.Generator;
+using GitLab_CI_DSL.metamodel.pipeline;
 
-namespace MavenApp_CI
+namespace Pipelines
 {
     public class MavenProjPipeline
     {

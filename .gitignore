@@ -5,3 +5,5 @@ GUI_Exercise/out/
 */GitLab_CI_DSL/obj/
 */MavenApp_CI/bin/
 */MavenApp_CI/obj/
+GitLab_CI_DSL/Pipelines/bin/
+GitLab_CI_DSL/Pipelines/obj/

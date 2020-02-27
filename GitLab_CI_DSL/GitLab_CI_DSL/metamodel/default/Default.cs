@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.metamodel.@default
 {
     public class Default
     {

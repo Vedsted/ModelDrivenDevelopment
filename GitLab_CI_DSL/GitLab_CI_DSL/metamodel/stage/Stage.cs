@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GitLab_CI_DSL.metamodel.jobs;
 
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.metamodel.stage
 {
     public class Stage
     {

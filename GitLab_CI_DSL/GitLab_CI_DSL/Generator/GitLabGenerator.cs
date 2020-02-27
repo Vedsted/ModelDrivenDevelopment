@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using GitLab_CI_DSL.metamodel.@default;
+using GitLab_CI_DSL.metamodel.jobs;
+using GitLab_CI_DSL.metamodel.pipeline;
+using GitLab_CI_DSL.metamodel.stage;
 
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.Generator
 {
     public class GitLabYmlGenerator
     {
@@ -92,7 +95,7 @@ namespace GitLab_CI_DSL
             s += $"  stage: {stageName}\n";
             
             if (image != null)
-                s += $"  image: {job.Image}\n";
+                s += $"  image: {image}\n";
             
 
             if (variables.Count != 0)

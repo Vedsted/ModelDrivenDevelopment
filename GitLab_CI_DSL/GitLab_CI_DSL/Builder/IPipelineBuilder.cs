@@ -1,4 +1,6 @@
-namespace GitLab_CI_DSL
+using GitLab_CI_DSL.metamodel.pipeline;
+
+namespace GitLab_CI_DSL.Builder
 {
     public interface IPipelineBuilder
     {

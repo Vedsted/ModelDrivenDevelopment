@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using GitLab_CI_DSL.metamodel.@default;
+using GitLab_CI_DSL.metamodel.jobs;
+using GitLab_CI_DSL.metamodel.stage;
 
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.metamodel.pipeline
 {
     public class Pipeline
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GitLab_CI_DSL
+namespace GitLab_CI_DSL.metamodel.jobs
 {
     public class Job
     {
@@ -64,6 +64,8 @@ namespace GitLab_CI_DSL
             {
                 throw new Exception("Only one image can be set for ");
             }
+
+            Image = imageName;
         }
     }
 }
