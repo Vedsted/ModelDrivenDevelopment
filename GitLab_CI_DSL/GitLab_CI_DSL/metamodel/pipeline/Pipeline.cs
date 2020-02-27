@@ -41,10 +41,5 @@ namespace GitLab_CI_DSL.metamodel.pipeline
 
             Default = def;
         }
-
-        public void Validate()
-        {
-            Console.WriteLine("Validate.... \n");
-        }
     }
 }

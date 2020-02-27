@@ -11,15 +11,10 @@ namespace GitLab_CI_DSL.Builder
     {
         private Pipeline _pipeline;
         
-        private Default _default;
+        private Default _currentDefault;
 
-        //private List<Stage> _stages;
         private Stage _currentStage;
 
-        //private List<Extension> _extensions;
-        //private Job _currentExtension;
-        
-        //private List<Job> _jobs;
         private Job _currentJob;
         
 
@@ -27,7 +22,6 @@ namespace GitLab_CI_DSL.Builder
         {
             SaveCurrentStage();
             SaveDefault();
-            _pipeline.Validate();
             return _pipeline;
         }
         
@@ -42,7 +36,7 @@ namespace GitLab_CI_DSL.Builder
 
         public PipelineBuilder Default()
         {
-            if (_default != null || _pipeline.Default != null)
+            if (_currentDefault != null || _pipeline.Default != null)
             {
                 throw new Exception("Multiple instances of 'Default' is not supported");
             }
@@ -52,7 +46,7 @@ namespace GitLab_CI_DSL.Builder
                 throw new Exception("Default must be defined before: Stages, Jobs and AbstractJobs");
             }
 
-            _default = new Default();
+            _currentDefault = new Default();
             return this;
         }
         
@@ -88,9 +82,9 @@ namespace GitLab_CI_DSL.Builder
 
         public PipelineBuilder Image(string imageName)
         {
-            if (_default != null)
+            if (_currentDefault != null)
             {
-                _default.SetImage(imageName);
+                _currentDefault.SetImage(imageName);
                 return this;
             }
 
@@ -105,9 +99,9 @@ namespace GitLab_CI_DSL.Builder
 
         public PipelineBuilder EnvVar(string key, string value)
         {
-            if (_default != null)
+            if (_currentDefault != null)
             {
-                _default.AddEnvironmentVariable(key, value);
+                _currentDefault.AddEnvironmentVariable(key, value);
                 return this;
             }
 
@@ -140,7 +134,7 @@ namespace GitLab_CI_DSL.Builder
             
             if (_pipeline.AbstractJobs != null)
                 abstractJobs.AddRange(_pipeline.AbstractJobs);
-            if(_currentStage.Jobs != null)
+            if(_currentStage != null && _currentStage.Jobs != null)
                 abstractJobs.AddRange(_currentStage.Jobs);
             
             var absJob = abstractJobs.Find(j => j.Name == abstractJobName);
@@ -168,8 +162,7 @@ namespace GitLab_CI_DSL.Builder
         
         private void SaveCurrentStage()
         {
-            if (_currentStage == null)
-                return;
+            if (_currentStage == null) return;
             
             SaveCurrentJob();
             _pipeline.AddStage(_currentStage);
@@ -182,11 +175,10 @@ namespace GitLab_CI_DSL.Builder
          */
         private void SaveDefault()
         {
-            if (_default != null)
-            {
-                _pipeline.SetDefault(_default);
-                _default = null;
-            }
+            if (_currentDefault == null) return;
+            
+            _pipeline.SetDefault(_currentDefault);
+            _currentDefault = null;
         }
     }
 }

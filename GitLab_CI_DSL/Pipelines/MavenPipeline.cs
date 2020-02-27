@@ -4,21 +4,20 @@ using GitLab_CI_DSL.metamodel.pipeline;
 
 namespace Pipelines
 {
-    public class SimpleMavenPipeline
+    public class MavenPipeline
     {
         private IPipelineBuilder _builder;
         
-        private const string FilePath = "~/git/myproj";
         private const string FileName = ".gitlab-ci.yml";
-
+        private const string PATH = "/home/username/some/path";
         
-        public SimpleMavenPipeline()
+        public MavenPipeline()
         {
             _builder = new PipelineBuilder();
 
             var pipeline = CreatePipeline();
             
-            new GitLabYmlGenerator().CreateGitlabCiConfig(FileName, FilePath, pipeline);
+            new GitLabYmlGenerator().CreateGitlabCiConfig(FileName, PATH, pipeline);
 
         }
 
@@ -26,22 +25,24 @@ namespace Pipelines
         {
             return _builder.
                 Pipeline().
-                    Default().
-                        Image("maven:latest").
                     AbstractJob(".clean").
+                        Image("maven:latest").
                         Script("mvn clean").
-                    Stage("validation").
+                    Stage("Build").
                         AbstractJob(".compile").
                             Extends(".clean").
                             Script("mvn compile").
-                        Job("compile").
+                        Job("build").
                             Extends(".compile").
-                            Script("echo \"Compiled Successfully\"").
+                            Script("echo \"Compiled Successfully!\"").
+                    Stage("Test").
                         Job("test").
-                            Extends(".compile").
+                            Extends(".clean").
                             Script("mvn verify").
-                            Script("echo \"Unit tests passed\"").
+                            Script("echo \"Tests passed!\"").
             Create();
         }
+        
+        
     }
 }

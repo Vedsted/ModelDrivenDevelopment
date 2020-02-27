@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using GitLab_CI_DSL.metamodel.@default;
 using GitLab_CI_DSL.metamodel.jobs;
 using GitLab_CI_DSL.metamodel.pipeline;
@@ -12,13 +13,27 @@ namespace GitLab_CI_DSL.Generator
     {
         public void CreateGitlabCiConfig(string fileName, string filePath, Pipeline pipeline)
         {
-            var s = parseDefaultJob(pipeline.Default);
+            var sb = new StringBuilder(); 
             
-            s += ParseStages(pipeline.Stages);
+            sb.Append(parseDefaultJob(pipeline.Default));
+            sb.Append(ParseStages(pipeline.Stages));
+            pipeline.Stages.ForEach(stage => sb.Append(ParseJobs(stage)));
+
+            if (!filePath.EndsWith("/"))
+                filePath += "/";
             
-            pipeline.Stages.ForEach(stage => s += ParseJobs(stage));
-            
-            Console.Write(s);
+            var path = filePath + fileName;
+
+            if (System.IO.Directory.Exists(filePath))
+            {
+                Console.WriteLine($"Writing pipeline configuration to: {path}");
+                System.IO.File.WriteAllText(@path, sb.ToString());
+            }
+            else
+            {
+                Console.WriteLine($"Directory: '{filePath}' does not exist!\nOutput will be printed in the console!\n");
+                Console.WriteLine(sb.ToString());
+            }
         }
 
         private string ParseStages(List<Stage> stages)
@@ -37,32 +52,33 @@ namespace GitLab_CI_DSL.Generator
                 return "";
             
 
-            var s = "default:\n";
+            var sb = new StringBuilder();
+            sb.AppendLine("default:");
             
             
             if (job.Image != null)
-                s += $"  image: {job.Image}\n";
+                sb.AppendLine($"  image: {job.Image}");
 
 
             var variables = job.EnvironmentVariables;
             if (variables != null)
             {
-                s += $"  variables:\n";
-                foreach (var kv in variables)
+                sb.AppendLine($"  variables:");
+                foreach (var (key, value) in variables)
                 {
-                    s += $"    {kv.Key}: \"{kv.Value}\"\n";
+                    sb.AppendLine($"    {key}: \"{value}\"");
                 }
             }
 
-            return s;
+            return sb.ToString();
         }
 
-        public string ParseJobs(Stage stage)
+        private string ParseJobs(Stage stage)
         {
-            var s = "";
-            stage.Jobs.FindAll(job => job.Type == JobType.JOB ).ForEach( job => s += ParseJob(stage.Name, job) );
+            var sb = new StringBuilder();
+            stage.Jobs.FindAll(job => job.Type == JobType.JOB ).ForEach( job => sb.Append(ParseJob(stage.Name, job)));
 
-            return s;
+            return sb.ToString();
         }
 
         private string ParseJob(string stageName, Job job)
@@ -71,8 +87,8 @@ namespace GitLab_CI_DSL.Generator
             GetJobParents(extends, job);
 
             string image = null; 
-            Dictionary<string, string> variables = new Dictionary<string, string>();
-            List<string> scripts = new List<string>();
+            var variables = new Dictionary<string, string>();
+            var scripts = new List<string>();
             
             extends.ForEach(j =>
             {
@@ -83,7 +99,7 @@ namespace GitLab_CI_DSL.Generator
                 {
                     foreach (var (key, value) in j.Variables)
                     {
-                        variables.Add(key, value);
+                        variables[key] = value;
                     }
                 }
                 
@@ -91,38 +107,37 @@ namespace GitLab_CI_DSL.Generator
                     j.Scripts.ForEach(script => scripts.Add(script));
             });
             
-            var s = $"{job.Name}:\n";
-            s += $"  stage: {stageName}\n";
+            var sb = new StringBuilder();
+            
+            sb.AppendLine($"{job.Name}:");
+            sb.AppendLine($"  stage: {stageName}");
             
             if (image != null)
-                s += $"  image: {image}\n";
+                sb.AppendLine($"  image: {image}");
             
 
             if (variables.Count != 0)
             {
-                s += $"  variables:\n";
+                sb.AppendLine("  variables:");
                 foreach (var kv in variables)
                 {
-                    s += $"    {kv.Key}: \"{kv.Value}\"\n";
+                    sb.AppendLine($"    {kv.Key}: \"{kv.Value}\"");
                 }
             }
                 
             if (scripts.Count != 0)
             {
-                s += $"  script:\n";
-                scripts.ForEach(script => s+= $"    - {script}\n");
+                sb.AppendLine("  script:");
+                scripts.ForEach(script => sb.AppendLine($"    - {script}"));
             }
 
-            return s;
+            return sb.ToString();
         }
-
+        
+        
         private void GetJobParents(List<Job> jobs, Job job)
         {
-            if (job.Extends != null)
-            {
-                job.Extends.ForEach( j => GetJobParents(jobs, j));
-            }
-            
+            job.Extends?.ForEach( j => GetJobParents(jobs, j));
             jobs.Add(job);
         }
         

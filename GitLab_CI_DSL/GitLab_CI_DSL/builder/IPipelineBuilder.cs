@@ -56,7 +56,7 @@ namespace GitLab_CI_DSL.Builder
 
         /**
          * Defines that the current job extends the given AbstractJob.
-         * It is only possible to extend an already existing Abstract Job.
+         * It is only pMavenProjFluentPipeline.csossible to extend an already existing Abstract Job.
          */
         public PipelineBuilder Extends(string abstractJobName);
     }

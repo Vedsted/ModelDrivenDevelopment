@@ -45,8 +45,19 @@ namespace GitLab_CI_DSL.metamodel.jobs
                 throw new Exception($"Extending Job '{job.Name}' of type '{job.Type}' is not allowed! Jobs can only extend Jobs of type 'ABSTRACTJOB'");
             }
 
+            CheckValidExtension(job);
             Extends.Add(job);
         }
+
+        private void CheckValidExtension(Job job)
+        {
+            if (job.Name == Name)
+                throw new Exception($"The abstract job: '{job.Name}' can't be extended twice!");
+            
+            Extends?.ForEach(j => j.CheckValidExtension(job));
+        }
+        
+        
 
         public void AddEnvironmentVariable(string key, string value)
         {
@@ -62,7 +73,7 @@ namespace GitLab_CI_DSL.metamodel.jobs
         {
             if (Image != null)
             {
-                throw new Exception("Only one image can be set for ");
+                throw new Exception("Only one image can be set for a given job");
             }
 
             Image = imageName;
