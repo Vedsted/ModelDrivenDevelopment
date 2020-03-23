@@ -1,0 +1,32 @@
+grammar org.xtext.example.jvs.Entities with org.eclipse.xtext.common.Terminals
+
+generate entities "http://www.xtext.org/example/jvs/Entities"
+
+Model: entities += Entity*;
+
+Entity:
+	'entity' name = ID ('extends' superType=[Entity])? '{'
+		attributes += Attribute*
+	'}'
+;
+
+Attribute:
+	//Single | Array
+	type=AttributeType name=ID ';'
+;
+
+AttributeType:
+	elementType=ElementType (array?='[' (length=INT)? ']')?
+;
+
+ElementType:
+	BasicType | EntityType
+;
+
+BasicType:
+	typeName=('string' | 'int' | 'boolean' | 'float') 
+;
+
+EntityType:
+	entity=[Entity]
+;

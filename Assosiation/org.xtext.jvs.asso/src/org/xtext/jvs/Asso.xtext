@@ -1,0 +1,42 @@
+grammar org.xtext.jvs.Asso with org.eclipse.xtext.common.Terminals
+
+generate asso "http://www.xtext.org/jvs/Asso"
+
+/* Left recursive
+Expression:
+	{Plus} left=Expression ('+' right=Expression)
+;
+*/
+
+Model:
+	variables += Variable*
+	evaluations += EvalExpression*
+;
+
+Expression:
+	PlusOrMinus
+;
+
+Atomic returns Expression:
+	'(' Expression ')' |
+	{IntConstant} value=INT |
+	{NegIntConstant} '-' value=INT |
+	{VariableRef} value=[Variable]|
+	{InlineVariable} '(' value=Variable ')'
+;
+
+PlusOrMinus returns Expression:
+	MultOrDiv (({Plus.left=current} '+' | {Minus.left=current} '-' ) right=MultOrDiv)*
+;
+
+MultOrDiv returns Expression:
+	Atomic (({Mult.left=current} '*' | {Div.left=current} '/' ) right=Atomic)*
+;
+
+Variable:
+	'let' name=ID '=' expression=Expression ('in' subExpression=Expression)?
+;
+
+EvalExpression:
+	'eval' name=ID '=' expression=Expression
+;

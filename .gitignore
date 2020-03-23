@@ -7,3 +7,6 @@ GUI_Exercise/out/
 */MavenApp_CI/obj/
 GitLab_CI_DSL/Pipelines/bin/
 GitLab_CI_DSL/Pipelines/obj/
+*/*/bin
+*/*/src-gen
+*/*/xtend-gen

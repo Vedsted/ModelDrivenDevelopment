@@ -1,0 +1,20 @@
+entity Window{
+	int numberOfGlasses;
+}
+
+entity Door{
+	boolean locked;
+	int numberOfKeys;
+}
+
+entity Roof{
+	string madeBy;
+}
+
+entity House { 
+	Roof roof;
+	Window[] windows;
+	Door[] doors;
+	boolean isRented;
+	string owner;
+}
