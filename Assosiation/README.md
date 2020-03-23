@@ -1,5 +1,33 @@
 # Assingment 2 - Math Interpreter
 
+## Status and Features
+
+### Hovering
+
+### Custom Base Grammar
+in order to get precise calculations, 
+
+### Variables
+Variables can be used in the following ways:
+```
+let a = ((1+2)*5)*(2-1)/3 	// a = 5
+let b = 1+2*5*2-0/3 		// b = 21
+
+let c = 					// c = 15
+	let c = 5 in 
+	let d = c*2 in
+	d+c
+;								
+
+let d = a*2 - (let t = a+a) // d = 0 
+
+let zero = 2--3+-5;			// zero = 0
+
+let pi = 22/7				// pi = 3.142857
+
+let x = -5+10*(1+0.5)/1.5; 	// x = 5
+```
+
 ## Xtext file
 ```xtext
 Model:

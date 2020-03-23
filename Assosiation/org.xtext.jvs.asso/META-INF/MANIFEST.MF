@@ -26,5 +26,6 @@ Export-Package: org.xtext.jvs.serializer,
  org.xtext.jvs.validation,
  org.xtext.jvs.asso,
  org.xtext.jvs.asso.impl,
- org.xtext.jvs.services
+ org.xtext.jvs.services,
+ org.xtext.jvs.util
 Import-Package: org.apache.log4j

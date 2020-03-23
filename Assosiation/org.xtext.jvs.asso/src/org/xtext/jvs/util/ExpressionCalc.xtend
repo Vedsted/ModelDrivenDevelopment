@@ -1,23 +1,23 @@
-package org.xtext.jvs
+package org.xtext.jvs.util
 
 import org.xtext.jvs.asso.Expression
-import org.xtext.jvs.asso.IntConstant
+import org.xtext.jvs.asso.FloatConstant
 import org.xtext.jvs.asso.VariableRef
 import org.xtext.jvs.asso.Plus
 import org.xtext.jvs.asso.Minus
 import org.xtext.jvs.asso.Mult
 import org.xtext.jvs.asso.Div
 import org.xtext.jvs.asso.InlineVariable
-import org.xtext.jvs.asso.NegIntConstant
+import org.xtext.jvs.asso.NegFloatConstant
 
 class ExpressionCalc {
 	
-	def static int compute(Expression expression){
+	def static float compute(Expression expression){
 		switch expression {
-			IntConstant: expression.value
-			NegIntConstant: expression.value * -1
+			FloatConstant: expression.value
+			NegFloatConstant: expression.value * -1
 			InlineVariable: expression.value.expression.compute
-			VariableRef: expression.compute
+			VariableRef: expression.value.expression.compute
 			Plus : expression.left.compute() + expression.right.compute()
 			Minus : expression.left.compute() - expression.right.compute()
 			Mult: expression.left.compute() * expression.right.compute()
@@ -25,14 +25,4 @@ class ExpressionCalc {
 			default: throw new Error("in method: compute(Expression expression)")
 		}
 	}
-	/*
-	def static int compute(VariableRef variableRef){
-		if(variableRef.value.subExpression != null){
-			variableRef.value.expression.compute
-			return variableRef.value.subExpression.compute
-		} else {
-			return variableRef.value.expression.compute	
-		}
-	}
-	*/
 }

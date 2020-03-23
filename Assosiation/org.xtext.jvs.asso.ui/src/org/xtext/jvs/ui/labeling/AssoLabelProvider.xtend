@@ -8,8 +8,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 import org.xtext.jvs.asso.EvalExpression
 import org.xtext.jvs.asso.Variable
-import org.xtext.jvs.generator.AssoGenerator
-import static extension org.xtext.jvs.ExpressionCalc.*
+import static extension org.xtext.jvs.util.ExpressionCalc.*
 
 /**
  * Provides labels for EObjects.
@@ -22,17 +21,8 @@ class AssoLabelProvider extends DefaultEObjectLabelProvider {
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
 	
 	def text(Variable variable) {
 		variable.name + " = " + variable.expression.compute
 	}
-	def text(EvalExpression ee) {
-		'''Result is: «ee.name» = «ee.expression.compute»'''
-	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
 }

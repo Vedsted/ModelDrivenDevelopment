@@ -13,18 +13,17 @@
     <genClasses ecoreClass="Asso.ecore#//Expression"/>
     <genClasses ecoreClass="Asso.ecore#//Variable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//Variable/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asso.ecore#//Variable/subVar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asso.ecore#//Variable/expression"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asso.ecore#//Variable/subExpression"/>
     </genClasses>
     <genClasses ecoreClass="Asso.ecore#//EvalExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//EvalExpression/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asso.ecore#//EvalExpression/expression"/>
     </genClasses>
-    <genClasses ecoreClass="Asso.ecore#//IntConstant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//IntConstant/value"/>
+    <genClasses ecoreClass="Asso.ecore#//FloatConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//FloatConstant/value"/>
     </genClasses>
-    <genClasses ecoreClass="Asso.ecore#//NegIntConstant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//NegIntConstant/value"/>
+    <genClasses ecoreClass="Asso.ecore#//NegFloatConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asso.ecore#//NegFloatConstant/value"/>
     </genClasses>
     <genClasses ecoreClass="Asso.ecore#//VariableRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Asso.ecore#//VariableRef/value"/>

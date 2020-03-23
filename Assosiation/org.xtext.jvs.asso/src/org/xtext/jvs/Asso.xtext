@@ -1,17 +1,27 @@
-grammar org.xtext.jvs.Asso with org.eclipse.xtext.common.Terminals
-
+//grammar org.xtext.jvs.Asso with org.eclipse.xtext.common.Terminals // Commented out to have own Terminals 
+grammar org.xtext.jvs.Asso hidden(WS, ML_COMMENT, SL_COMMENT) // Custom Terminals
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate asso "http://www.xtext.org/jvs/Asso"
 
-/* Left recursive
-Expression:
-	{Plus} left=Expression ('+' right=Expression)
-;
-*/
 
 Model:
 	variables += Variable*
 	evaluations += EvalExpression*
 ;
+
+/*******************************************
+ * Custom Terminals.
+ * Hidden terminals are ignored in the dsl
+ */
+terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+terminal FLOAT returns ecore::EFloat: ('0'..'9')+'.'('0'..'9')+ | ('0'..'9')+;
+
+terminal ML_COMMENT : '/*' -> '*/';	
+terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS         : (' '|'\t'|'\r'|'\n')+;
+/********************************************/
 
 Expression:
 	PlusOrMinus
@@ -19,8 +29,8 @@ Expression:
 
 Atomic returns Expression:
 	'(' Expression ')' |
-	{IntConstant} value=INT |
-	{NegIntConstant} '-' value=INT |
+	{FloatConstant} value=FLOAT |
+	{NegFloatConstant} '-' value=FLOAT |
 	{VariableRef} value=[Variable]|
 	{InlineVariable} '(' value=Variable ')'
 ;
@@ -34,9 +44,9 @@ MultOrDiv returns Expression:
 ;
 
 Variable:
-	'let' name=ID '=' expression=Expression ('in' subExpression=Expression)?
+	'let' name=ID '=' (subVar+=Variable 'in')* expression=Expression (';')?
 ;
 
 EvalExpression:
-	'eval' name=ID '=' expression=Expression // Id added to display hovering
+	'eval' expression=Expression (';')?// Id added to display hovering
 ;

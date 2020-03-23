@@ -9,7 +9,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.jvs.asso.Variable
 import org.xtext.jvs.asso.Expression
-import org.xtext.jvs.asso.IntConstant
+import org.xtext.jvs.asso.FloatConstant
 import org.xtext.jvs.asso.VariableRef
 import org.xtext.jvs.asso.Plus
 import org.xtext.jvs.asso.Minus
@@ -17,8 +17,8 @@ import org.xtext.jvs.asso.Mult
 import org.xtext.jvs.asso.Div
 import javax.swing.JOptionPane
 import org.xtext.jvs.asso.EvalExpression
-import static extension org.xtext.jvs.ExpressionCalc.*
-import org.xtext.jvs.asso.NegIntConstant
+import static extension org.xtext.jvs.util.ExpressionCalc.*
+import org.xtext.jvs.asso.NegFloatConstant
 
 /**
  * Generates code from your model files on save.
@@ -47,8 +47,8 @@ class AssoGenerator extends AbstractGenerator {
 	
 	def String toStringRep(Expression expression){
 		switch expression {
-			IntConstant: expression.value + ""
-			NegIntConstant: "-"+expression.value
+			FloatConstant: expression.value + ""
+			NegFloatConstant: "-"+expression.value
 			VariableRef: expression.value.name
 			Plus: '''(«expression.left.toStringRep» + «expression.right.toStringRep»)'''
 			Minus: '''(«expression.left.toStringRep» - «expression.right.toStringRep»)'''
