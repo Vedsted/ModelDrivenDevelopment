@@ -25,7 +25,7 @@ class ExpressionCalc {
 			default: throw new Error("in method: compute(Expression expression)")
 		}
 	}
-	
+	/*
 	def static int compute(VariableRef variableRef){
 		if(variableRef.value.subExpression != null){
 			variableRef.value.expression.compute
@@ -34,5 +34,5 @@ class ExpressionCalc {
 			return variableRef.value.expression.compute	
 		}
 	}
-	
+	*/
 }

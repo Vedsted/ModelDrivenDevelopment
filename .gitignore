@@ -10,3 +10,4 @@ GitLab_CI_DSL/Pipelines/obj/
 */*/bin
 */*/src-gen
 */*/xtend-gen
+*/*/test-bin
