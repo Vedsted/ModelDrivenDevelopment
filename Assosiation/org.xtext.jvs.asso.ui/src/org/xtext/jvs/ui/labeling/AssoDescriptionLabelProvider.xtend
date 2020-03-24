@@ -4,7 +4,6 @@
 package org.xtext.jvs.ui.labeling
 
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider
-import org.eclipse.xtext.resource.IEObjectDescription
 
 /**
  * Provides labels for IEObjectDescriptions and IResourceDescriptions.

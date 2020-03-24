@@ -6,7 +6,6 @@ package org.xtext.jvs.ui.labeling
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import org.xtext.jvs.asso.EvalExpression
 import org.xtext.jvs.asso.Variable
 import static extension org.xtext.jvs.util.ExpressionCalc.*
 
