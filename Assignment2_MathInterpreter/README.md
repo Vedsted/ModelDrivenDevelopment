@@ -6,7 +6,6 @@ This README can also be found on GitHub here: [README](https://github.com/Vedste
 
 
 ## Table of Contents
-- [Assingment 2 - Math Interpreter](#assingment-2---math-interpreter)
 - [Cloning and importing project](#cloning-and-importing-project)
 - [Status and Features](#status-and-features)
 	- [Hovering](#hovering)
@@ -40,7 +39,7 @@ def text(Variable variable) {
 }
 ```
 
-The compute method is defined in the `ExpressionCalc` class in the `org.xtext.jvs.util` package. The implementation can be seen in section: [Expression Calculator - ExpressionCalc](##-Expression-Calculator---ExpressionCalc).
+The compute method is defined in the `ExpressionCalc` class in the `org.xtext.jvs.util` package. The implementation can be seen in section: [Expression Calculator - ExpressionCalc](#Expression-Calculator---ExpressionCalc).
 
 Evalulations is still printed in the console and displayed in a pop up box.
 
@@ -254,7 +253,7 @@ let zero = 2--3+-5;			// zero = 0
 
 let pi = 22/7				// pi = 3.142857
 
-let x = -5+10*(1+0.5)/1.5; 	// x = 5https://github.com/Vedsted/ModelDrivenDevelopment/tree/master/Assignment2_MathInterpreter
+let x = -5+10*(1+0.5)/1.5; 	// x = 5
 
 /* Eval is displayed in a pop up */
 eval (b*43+(2/14))*zero 	// -> 0
