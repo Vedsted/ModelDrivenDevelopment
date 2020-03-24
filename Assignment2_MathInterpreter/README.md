@@ -1,8 +1,8 @@
 # Assingment 2 - Math Interpreter
 Math interpreter assignment for Model-driven software development course.
-The code can be found on GitHub here: [Vedsted/MathInterpreter](https://github.com/vedsted/modeldrivendevelopment/)
+The code can be found on GitHub here: [Vedsted/MathInterpreter](https://github.com/Vedsted/ModelDrivenDevelopment/tree/master/Assignment2_MathInterpreter)
 
-This README can also be found on GitHub here: 
+This README can also be found on GitHub here: [README](https://github.com/Vedsted/ModelDrivenDevelopment/blob/master/Assignment2_MathInterpreter/README.md)
 
 
 ## Table of Contents
@@ -19,7 +19,7 @@ This README can also be found on GitHub here:
 - [Math file](#math-file)
 
 # Cloning and importing project
-The project can be cloned normally from github. The project is part of the [Vedsted/ModelDrivenDevelopment](https://github.com/vedsted/modeldrivendevelopment) repository an can be found in the `Assignment2_MathInterpreter` folder.
+The project can be cloned normally from github. The project is part of the [Vedsted/ModelDrivenDevelopment](https://github.com/Vedsted/ModelDrivenDevelopment/tree/master/Assignment2_MathInterpreter) repository an can be found in the `Assignment2_MathInterpreter` folder.
 
 Erros can occur when the project is imported into eclipse. This is due to empty folders missing in some of the projects. These errors can simply be fixed by creating empty folders where they are missing.
 
@@ -254,7 +254,7 @@ let zero = 2--3+-5;			// zero = 0
 
 let pi = 22/7				// pi = 3.142857
 
-let x = -5+10*(1+0.5)/1.5; 	// x = 5
+let x = -5+10*(1+0.5)/1.5; 	// x = 5https://github.com/Vedsted/ModelDrivenDevelopment/tree/master/Assignment2_MathInterpreter
 
 /* Eval is displayed in a pop up */
 eval (b*43+(2/14))*zero 	// -> 0
