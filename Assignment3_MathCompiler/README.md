@@ -15,7 +15,7 @@ This README can also be found on GitHub here: [README](https://github.com/Vedste
 - [Example App](#example-app)
 
 # Cloning and importing project
-The project can be cloned normally from github. The project is part of the [Vedsted/ModelDrivenDevelopment](https://github.com/Vedsted/ModelDrivenDevelopment) repository an can be found in the `Assignment2_MathInterpreter` folder.
+The project can be cloned normally from github. The project is part of the [Vedsted/ModelDrivenDevelopment](https://github.com/Vedsted/ModelDrivenDevelopment) repository an can be found in the `Assignment3_MathCompiler` folder.
 
 Erros can occur when the project is imported into eclipse. This is due to empty folders missing in some of the projects. These errors can simply be fixed by creating empty folders where they are missing.
 
