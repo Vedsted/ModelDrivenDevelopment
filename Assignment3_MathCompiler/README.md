@@ -1,4 +1,4 @@
-# Assingment # - Math Compiler
+# Assingment 3 - Math Compiler
 Math compiler assignment for Model-driven software development course.
 The code can be found on GitHub here: [Vedsted/MathInterpreter](https://github.com/Vedsted/ModelDrivenDevelopment/tree/master/Assignment3_MathCompiler)
 
