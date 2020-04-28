@@ -42,8 +42,6 @@ let c = 					// c = 15
 	d+c
 ;								
 
-let d = a*2 - (let t = a+a) // d = 0 
-
 let zero = 2--3+-5;			// zero = 0
 
 let pi = 22/7				// pi = 3.142857
@@ -69,7 +67,6 @@ Validation for the use external refrence (ExternalRef) was created. This informs
 		}	
 	}
 ```
-
 
 # Xtext file
 Xtext grammar specification.
