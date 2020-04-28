@@ -18,7 +18,7 @@ import sdu.jvs.mathCompiler.Model
  */
 class MathCompilerScopeProvider extends AbstractMathCompilerScopeProvider {
 
-	val epackage = MathCompilerPackage.eINSTANCE
+	/*val epackage = MathCompilerPackage.eINSTANCE
 
 	override getScope(EObject context, EReference reference) {
 		if (reference == epackage.variableRef_Value) {
@@ -38,5 +38,5 @@ class MathCompilerScopeProvider extends AbstractMathCompilerScopeProvider {
 			}
 		}
 	}
-
+*/
 }
