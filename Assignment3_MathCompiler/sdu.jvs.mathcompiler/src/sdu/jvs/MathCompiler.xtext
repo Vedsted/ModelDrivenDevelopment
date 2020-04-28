@@ -1,0 +1,62 @@
+grammar sdu.jvs.MathCompiler hidden(WS, ML_COMMENT, SL_COMMENT)
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate mathCompiler "http://www.jvs.sdu/MathCompiler"
+
+Model:
+	externals += External*
+	variables += Variable*
+	results += Result+
+;
+
+/*******************************************
+ * Custom Terminals.
+ * Hidden terminals are ignored in the dsl
+ */
+terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+terminal FLOAT returns ecore::EFloat: ('0'..'9')+'.'('0'..'9')+ | ('0'..'9')+;
+
+terminal ML_COMMENT : '/*' -> '*/';	
+terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS         : (' '|'\t'|'\r'|'\n')+;
+/********************************************/
+
+External:
+	'external' name=ID '(' inputs+=Input (',' inputs+=Input)* ')'
+;
+
+Input:
+	name=ID
+;
+
+
+Variable:
+	'let' name=ID '=' (funcVars+=Variable 'in')* expression=Expression (';')?
+;
+
+
+Result:
+	'result' name=ID 'is' expression=Expression (';')?// Id added to display hovering
+;
+
+
+Expression:
+	PlusOrMinus
+;
+
+PlusOrMinus returns Expression:
+	MultOrDiv (({Plus.left=current} '+' | {Minus.left=current} '-' ) right=MultOrDiv)*
+;
+
+MultOrDiv returns Expression:
+	Atomic (({Mult.left=current} '*' | {Div.left=current} '/' ) right=Atomic)*
+;
+
+Atomic returns Expression:
+	'(' Expression ')' |
+	{FloatConstant} value=FLOAT |
+	{NegFloatConstant} '-' value=FLOAT |
+	{VariableRef} value=[Variable] |
+	{ExternalRef} value=[External]'('(parameters+=Expression (',' parameters+=Expression)*)?')' // validate number of input parameters
+;
