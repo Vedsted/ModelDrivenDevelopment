@@ -8,14 +8,11 @@ This README can also be found on GitHub here: [README](https://github.com/Vedste
 ## Table of Contents
 - [Cloning and importing project](#cloning-and-importing-project)
 - [Status and Features](#status-and-features)
-	- [Hovering](#hovering)
-	- [Custom Base Grammar](#custom-base-grammar)
-	- [Variables](#variables)
+  - [Variables](#variables)
+  - [External Input Validation](#external-input-validation)
 - [Xtext file](#xtext-file)
 - [Generator File](#generator-file)
-- [Hovering - AssoLabelProvider](#hovering---assolabelprovider)
-- [Expression Calculator - ExpressionCalc](#expression-calculator---expressioncalc)
-- [Math file](#math-file)
+- [Example App](#example-app)
 
 # Cloning and importing project
 The project can be cloned normally from github. The project is part of the [Vedsted/ModelDrivenDevelopment](https://github.com/Vedsted/ModelDrivenDevelopment) repository an can be found in the `Assignment2_MathInterpreter` folder.
@@ -23,30 +20,30 @@ The project can be cloned normally from github. The project is part of the [Veds
 Erros can occur when the project is imported into eclipse. This is due to empty folders missing in some of the projects. These errors can simply be fixed by creating empty folders where they are missing.
 
 # Status and Features
-A project has been created with the `.mc` extension. An example of how to use the language can be seen in section: [MC file](#mc-file).
+A project has been created with the `.mc` extension. An example of how to use the language can be seen in section: [Example App](#example-app).
 
 The language fulfills the requirements of the assignment. There is currently no known bugs in the code.
 
-Furthermore, I have replaced the predefined `INT` with `FLOAT` in my grammer as well as add negative numbers to the language. Examples of both can be seen in either section [Variables](#variables) or [Math file](#mc-file).
+Furthermore, I have replaced the predefined `INT` with `FLOAT` in my grammer as well as add negative numbers to the language. Examples of both can be seen in either section [Variables](#variables) or [Example App](#example-app).
 
 
 ## Variables
 Variables can be used the following ways in the DSL:
 ```js
-let a = ((1+2)*5)*(2-1)/3 	// a = 5
-let b = 1+2*5*2-0/3 		// b = 21
+let a = ((1+2)*5)*(2-1)/3   // a = 5
+let b = 1+2*5*2-0/3         // b = 21
 
-let c = 					// c = 15
+let c =                     // c = 15
 	let c = 5 in 
 	let d = c*2 in
 	d+c
 ;								
 
-let zero = 2--3+-5;			// zero = 0
+let zero = 2--3+-5;         // zero = 0
 
-let pi = 22/7				// pi = 3.142857
+let pi = 22/7               // pi = 3.142857
 
-let x = -5+10*(1+0.5)/1.5; 	// x = 5
+let x = -5+10*(1+0.5)/1.5;  // x = 5
 ```
 
 ## External Input Validation
